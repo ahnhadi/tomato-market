@@ -99,3 +99,4 @@ public class JwtUtils {
         return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
     }
 }
+
