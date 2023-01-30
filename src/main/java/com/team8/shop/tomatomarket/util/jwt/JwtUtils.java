@@ -4,7 +4,7 @@ import com.team8.shop.tomatomarket.entity.UserRoleEnum;
 import com.team8.shop.tomatomarket.security.UserDetailsServiceImpl;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,15 +20,19 @@ import java.util.Date;
 
 
 @Component
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class JwtUtils {
 
-    private final UserDetailsServiceImpl userDetailsService;
+    private UserDetailsServiceImpl userDetailsService;
 
     public static final String AUTHORIZATION_HEADER = "Authorization";
     public static final String AUTHORIZATION_KEY = "auth";
     public static final String BEARER_PREFIX = "Bearer ";
     private static final long TOKEN_TIME = 60*60*1000L;
+
+    public JwtUtils(UserDetailsServiceImpl userDetailsService){
+        this.userDetailsService = userDetailsService;
+    }
 
 
     @Value("${jwt.secret.key}")
